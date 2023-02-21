@@ -15,7 +15,7 @@ namespace APICQRS.Migrations
                     IdCatgeoria = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     NombreCategoria = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
-                    DesecripcionCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    DescripcionCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {

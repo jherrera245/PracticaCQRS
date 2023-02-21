@@ -11,6 +11,6 @@ namespace APICQRS.Models
         [StringLength(80, MinimumLength = 10)]
         public string NombreCategoria { get; set; }
         
-        public string DesecripcionCategoria { get; set; }
+        public string DescripcionCategoria { get; set; }
     }
 }

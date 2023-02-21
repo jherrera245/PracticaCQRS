@@ -29,7 +29,7 @@ namespace APICQRS.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCatgeoria"), 1L, 1);
 
-                    b.Property<string>("DesecripcionCategoria")
+                    b.Property<string>("DescripcionCategoria")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
