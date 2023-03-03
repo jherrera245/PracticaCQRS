@@ -64,5 +64,46 @@ namespace APICQRS.Controllers
             return NotFound();
         }
 
+
+        //metodo para la actualización de categorias
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateCategoria(int id, string? nombre, string? descripcion)
+        {
+
+            var commnad = new UpdateCategoria()
+            {
+                IdCategoria = id,
+                NombreCategoria = nombre,
+                DescripcionCategoria = descripcion
+            };
+
+            var response = await _mediator.Send(commnad);
+
+            if (response is not null)
+            {
+                return Ok(response);
+            }
+
+            return NotFound();
+        }
+
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteCatgeria(int id)
+        {
+
+            var command = new DeleteCategoria()
+            {
+                IdCategoria = id
+            };
+
+            var response = await _mediator.Send(command);
+
+            if (response is not null)
+            {
+                return Ok(response);
+            }
+
+            return NotFound();
+        }
     }
 }

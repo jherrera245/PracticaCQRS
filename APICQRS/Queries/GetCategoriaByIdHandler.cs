@@ -20,7 +20,7 @@ namespace APICQRS.Queries
         )
         {
             return await _context.Categorias.FirstOrDefaultAsync(
-                categoria => categoria.IdCatgeoria == request.IdCategoria, 
+                categoria => categoria.IdCategoria == request.IdCategoria, 
                 cancellationToken
             );
         }

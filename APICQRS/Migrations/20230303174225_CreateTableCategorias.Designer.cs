@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APICQRS.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230221005944_CreateTableCategorias")]
+    [Migration("20230303174225_CreateTableCategorias")]
     partial class CreateTableCategorias
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,11 +25,11 @@ namespace APICQRS.Migrations
 
             modelBuilder.Entity("APICQRS.Models.Categorias", b =>
                 {
-                    b.Property<int>("IdCatgeoria")
+                    b.Property<int>("IdCategoria")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCatgeoria"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCategoria"), 1L, 1);
 
                     b.Property<string>("DescripcionCategoria")
                         .IsRequired()
@@ -40,7 +40,7 @@ namespace APICQRS.Migrations
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
 
-                    b.HasKey("IdCatgeoria");
+                    b.HasKey("IdCategoria");
 
                     b.ToTable("Categorias");
                 });

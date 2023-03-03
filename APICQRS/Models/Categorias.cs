@@ -5,7 +5,7 @@ namespace APICQRS.Models
     public class Categorias
     {
         [Key]
-        public int IdCatgeoria { get; set; }
+        public int IdCategoria { get; set; }
         
         [Required]
         [StringLength(80, MinimumLength = 10)]
