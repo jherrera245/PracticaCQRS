@@ -1,6 +1,9 @@
 using APICQRS.Data;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.Win32;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +22,9 @@ builder.Services.AddDbContext<AppDbContext>(
 
 //agregando servicio mediator para implemetar CQRS
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
+
+//agregando FluentValidator
+builder.Services.AddFluentValidationAutoValidation().AddFluentValidationClientsideAdapters();
 
 var app = builder.Build();
 

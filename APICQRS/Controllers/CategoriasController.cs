@@ -47,11 +47,20 @@ namespace APICQRS.Controllers
 
         //metodo para el registro de categorias
         [HttpPost("create")]
-        public async Task<IActionResult> CreateCategoria(string? nombre, string? descripcion) {
+        public async Task<IActionResult> CreateCategoria(Categorias categoria) {
             
-            var commnad = new CreateCategoria() { 
-                NombreCategoria = nombre,
-                DescripcionCategoria = descripcion
+            //Si el modelo no es valido
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(
+                    StatusCodes.Status400BadRequest, ModelState
+                );
+            }
+ 
+            var commnad = new CreateCategoria()
+            {
+                NombreCategoria = categoria.NombreCategoria,
+                DescripcionCategoria = categoria.DescripcionCategoria
             };
 
             var response = await _mediator.Send(commnad);
@@ -65,16 +74,23 @@ namespace APICQRS.Controllers
         }
 
 
-        //metodo para la actualización de categorias
+        //metodo para la actualización de categorias    
         [HttpPut("update")]
-        public async Task<IActionResult> UpdateCategoria(int id, string? nombre, string? descripcion)
+        public async Task<IActionResult> UpdateCategoria(Categorias categoria)
         {
+            //Si el modelo no es valido
+            if (!ModelState.IsValid)
+            {
+                return StatusCode(
+                    StatusCodes.Status400BadRequest, ModelState
+                );
+            }
 
             var commnad = new UpdateCategoria()
             {
-                IdCategoria = id,
-                NombreCategoria = nombre,
-                DescripcionCategoria = descripcion
+                IdCategoria = categoria.IdCategoria,
+                NombreCategoria = categoria.NombreCategoria,
+                DescripcionCategoria = categoria.DescripcionCategoria
             };
 
             var response = await _mediator.Send(commnad);
