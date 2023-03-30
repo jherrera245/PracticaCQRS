@@ -1,6 +1,9 @@
 ﻿using APICQRS.Data;
+using APICQRS.Filters;
 using APICQRS.Models;
+using APICQRS.Wrappers;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace APICQRS.Queries
@@ -21,13 +24,17 @@ namespace APICQRS.Queries
             GetAllCategorias request, CancellationToken cancellationToken
         )
         {
-            var listaCategorias = await _context.Categorias.ToListAsync();
+            var listaCategorias = await _context.Categorias
+                .Skip((request.Pagination.PageNumber - 1) * request.Pagination.PageSize)
+                .Take(request.Pagination.PageSize)
+                .ToListAsync();
 
             if (listaCategorias == null)
             {
                 return null;
             }
-            return listaCategorias.AsReadOnly();
+
+            return listaCategorias;
         }
     }
 }
